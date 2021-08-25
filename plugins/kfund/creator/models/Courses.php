@@ -33,7 +33,7 @@ class Courses extends Model
     
                 'ctypes' => [
         
-                    'kfund\creator\models\ctypes',
+                    'Kfund\Creator\Models\Ctypes',
         
                     'table' => 'kfund_creator_courses_ct',
                     

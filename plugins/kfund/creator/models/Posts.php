@@ -33,7 +33,7 @@ class Posts extends Model
     
             'tags' => [
     
-                'kfund\creator\models\tags',
+                'Kfund\Creator\Models\Tags',
     
                 'table' => 'kfund_creator_posts_tags',
                 

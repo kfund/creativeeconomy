@@ -33,7 +33,7 @@ class Comments extends Model
     
                 'courses' => [
         
-                    'kfund\creator\models\courses',
+                    'Kfund\Creator\Models\Courses',
         
                     'table' => 'kfund_creator_comments_courses',
                     
