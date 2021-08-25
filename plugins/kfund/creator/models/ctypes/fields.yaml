@@ -1,0 +1,12 @@
+fields:
+    course_type:
+        label: 'Course type'
+        span: auto
+        type: text
+    slug:
+        label: slug
+        span: auto
+        preset:
+            field: course_type
+            type: slug
+        type: text

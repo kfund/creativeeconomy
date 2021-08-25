@@ -1,0 +1,10 @@
+name: Courses
+form: $/kfund/creator/models/courses/fields.yaml
+modelClass: Kfund\Creator\Models\Courses
+defaultRedirect: kfund/creator/courses
+create:
+    redirect: 'kfund/creator/courses/update/:id'
+    redirectClose: kfund/creator/courses
+update:
+    redirect: kfund/creator/courses
+    redirectClose: kfund/creator/courses

@@ -1,0 +1,10 @@
+name: Teachers
+form: $/kfund/creator/models/teachers/fields.yaml
+modelClass: Kfund\Creator\Models\Teachers
+defaultRedirect: kfund/creator/teachers
+create:
+    redirect: 'kfund/creator/teachers/update/:id'
+    redirectClose: kfund/creator/teachers
+update:
+    redirect: kfund/creator/teachers
+    redirectClose: kfund/creator/teachers

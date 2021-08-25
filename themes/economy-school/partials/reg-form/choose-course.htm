@@ -1,0 +1,17 @@
+[builderList]
+modelClass = "Kfund\Creator\Models\Courses"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+pageNumber = "{{ :page }}"
+==
+
+{% set records = builderList.records %}
+
+{% for record in records %}
+    <option>{{ record.title }}</option>
+{% endfor %}

@@ -1,0 +1,182 @@
+title = "Post"
+url = "/post/:id"
+layout = "default"
+is_hidden = 0
+
+[builderDetails]
+modelClass = "Kfund\Creator\Models\Posts"
+identifierValue = "{{ :id }}"
+modelKeyColumn = "id"
+displayColumn = "title"
+notFoundMessage = "Record not found"
+
+[builderList]
+modelClass = "Kfund\Creator\Models\Posts"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No posts found"
+detailsPage = "post"
+detailsKeyColumn = "id"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+==
+{% set record = builderDetails.record %}
+{% set list = builderList.records %}
+
+<section id="post-content">
+        <div class="uk-container">
+            <div class="post-info">
+                {% for tag in record.tags %}
+                <div class="small-description post-info__category">
+                    <a href="#">{{ tag.title|_ }}</a>
+                </div>
+                {% endfor %}
+                <span class="info__date">{{ record.date }}</span>
+            </div>
+            <h1 class="main-title">{{ record.title }}</h1>
+        </div>
+        <div class="post-content__grid container-xl">
+            <div class="sidebar-left">
+            {% if record.discount == '1' %}
+                
+                    <div class="uk-card uk-card-default">
+                        <div class="uk-card-media-top">
+                            <img src="{{ 'assets/images/post/left-sidebar.jpg'|theme }}" alt="{{ record.title }}">
+                        </div>
+                        <div class="uk-card-body">
+                            <h3 class="card-title">{{ 'Cкидка 15% для онлайн курсів'|_ }}</h3>
+                            <a href="{{ 'reg-form'|page }}" class="main-button">{{ 'Реєструйся'|_ }}</a>
+                        </div>
+                    </div>
+                
+            {% endif %}
+            </div>
+            <div class="article">
+                <div class="post-content__grid--main-description">
+                    <p>{{ record.short_descr }}</p>
+                </div>
+                <div class="post-content__grid--main-picture">
+                    <img src="{{ record.post_image_inner.path }}" alt="">
+                    <div class="main-picture--source">{{ record.image_source }}</div>
+                </div>
+                <div class="post-content__grid--article">
+                    <p> {{ record.paragraph_1|raw }} </p>
+
+                    <p> {{ record.paragraph_2|raw }} </p>
+                </div>
+                {% if record.video_link %}
+                <div class="post-content__grid--video">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/{{ record.video_link|raw }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                {% endif %}
+                <div class="post-content__grid--article-details">
+                    <h2 class="secondary-title">{{ record.article_1_title }}</h2>
+                </div>
+                <div class="post-content__grid--article">
+                    <p>{{ record.article_1_text|raw }}</p>
+                </div>
+                <div class="post-content__grid--article-details">
+                    <h2 class="secondary-title">{{ record.article_2_title }}</h2>
+                </div>
+                <div class="post-content__grid--article">
+                    <p>{{ record.article_2_text|raw }}</p>
+                </div>
+                <div class="post-content__grid--categories">
+                    {% for tag in record.tags %}
+                        <div class="small-description">
+                            <a href="#">{{ tag.title }}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <ul class="socials socials-hovering">
+                    <a href="#" class="facebook">
+                    </a>
+                    <a href="#" class="linkedin">
+                    </a>
+                    <a href="#" class="twitter">
+                    </a>
+                </ul>
+            </div>
+            <div class="sidebar-right">
+                <ul class="socials">
+                    <li>
+                        <a href="#"><img width="13" height="25" src="{{ 'assets/images/Facebook-black.svg'|theme }}" alt="Facebook"> </a>
+
+                    </li>
+                    <li class="linkedin">
+                        <a href="#"><img width="25" height="25" src="{{ 'assets/images/linkedin-black.svg'|theme }}" alt="linkedin"> </a>
+                    </li>
+                    <li>
+                        <a href="#"> <img width="25" height="25" src="{{ 'assets/images/Twitter-black.svg'|theme }}" alt="Twitter">
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="post-content__other">
+            <h1 class="slider-title">Тематичні новини</h1>
+            <div class="swiper-container mySwiper">
+                <div class="swiper-wrapper">
+                    {% for tag in record.tags %}
+                        {% for item in list %}
+                            {% if item.title == record.title %}
+                            
+                            {% else %}
+                                {% if tag.slug == item.tags[0].slug %}
+                                    <a href="/post/{{ item.id }}" class="swiper-slide">
+                                        <div>
+                                            <img src="{{ item.post_image.path }}" alt="">
+                                            <div class="uk-overlay-default uk-position-cover"></div>
+                                            <div class="uk-overlay uk-position-top uk-dark">
+                                                <div class="post-info">
+                                                    <div class="small-description post-info__category">
+                                                        <span href="/posts/{{ item.id }}">{{ item.title }}</span>
+                                                    </div>
+                                                    <span class="info__date">{{ item.date }}</span>
+                                                </div>
+                                                <p>{{ item.short_descr }}</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+        
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    {% partial 'reg-bottom' %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var swiper = new Swiper(".mySwiper", {
+                pagination: {
+                    el: '.swiper-pagination',
+                    type: 'fraction',
+                    formatFractionCurrent: function(number) {
+                        return number;
+                    },
+                    formatFractionTotal: function(number) {
+                        return number;
+                    },
+                    renderFraction: function(currentClass, totalClass) {
+                        return '<span class="' + currentClass + '"></span>' +
+                            '<span class="line"></span>' +
+                            '<span class="' + totalClass + '"></span>';
+                    }
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                slidesPerView: "auto",
+                spaceBetween: 15,
+            });
+        });
+    </script>

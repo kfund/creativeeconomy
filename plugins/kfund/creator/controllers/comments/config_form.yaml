@@ -1,0 +1,10 @@
+name: Comments
+form: $/kfund/creator/models/comments/fields.yaml
+modelClass: Kfund\Creator\Models\Comments
+defaultRedirect: kfund/creator/comments
+create:
+    redirect: 'kfund/creator/comments/update/:id'
+    redirectClose: kfund/creator/comments
+update:
+    redirect: kfund/creator/comments
+    redirectClose: kfund/creator/comments

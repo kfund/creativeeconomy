@@ -1,0 +1,51 @@
+title = "Posts"
+url = "/posts"
+layout = "default"
+is_hidden = 0
+
+[builderList]
+modelClass = "Kfund\Creator\Models\Posts"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No posts found"
+detailsPage = "post"
+detailsKeyColumn = "id"
+detailsUrlParameter = "id"
+recordsPerPage = 0
+pageNumber = "{{ :page }}"
+==
+{% set records = builderList.records %}
+<section id="news-wrapper">
+    <div class="uk-container uk-container-small">
+        <h1 class="news-wrapper-main-title main-title">{{ 'Новини'|_ }}</h1>
+        <div class="news-wrapper--posts-wrapper">
+            {% for record in records %}
+            <div class="posts-wrapper--post">
+                <div class="post--figure">
+                    <img src="{{ record.post_image.path }}" alt="{{ record.title }}">
+                    <div class="post--figure__overlay">
+                        <a class="main-button" href="/post/{{ record.id }}">{{ 'Детальніше'|_ }}</a>
+                    </div>
+                </div>
+                <div class="post-description">
+                    <div class="post-description--category-date">
+                        {% for tag in record.tags %}
+                        <div class="post-description--category small-description"><span>{{ tag.title }}</span></div>
+                        {% endfor %}
+                        <div class="post-description--date">{{ record.date }}</div>
+                    </div>
+                    <a href="/post/{{ record.id }}" class="post-description--title top-article">{{ record.title }}</a>
+                    <div class="post-description--short-content">{{ record.short_descr }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+        <div class="news-wrapper--pagination">
+            <a href="#" class="news-wrapper-count active"><span>1</span> </a>
+            <a href="#" class="news-wrapper-count"><span>2</span> </a>
+            <a href="#" class="news-wrapper-count"><span>3</span> </a>
+        </div>
+    </section>
+    {% partial 'reg-bottom' %}

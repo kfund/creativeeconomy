@@ -1,0 +1,10 @@
+name: Cities
+form: $/kfund/creator/models/cities/fields.yaml
+modelClass: Kfund\Creator\Models\Cities
+defaultRedirect: kfund/creator/cities
+create:
+    redirect: 'kfund/creator/cities/update/:id'
+    redirectClose: kfund/creator/cities
+update:
+    redirect: kfund/creator/cities
+    redirectClose: kfund/creator/cities

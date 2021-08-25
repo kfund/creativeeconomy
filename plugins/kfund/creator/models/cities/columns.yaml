@@ -1,0 +1,11 @@
+columns:
+    city:
+        label: City
+        type: text
+        searchable: true
+        sortable: true
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true

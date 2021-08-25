@@ -1,0 +1,244 @@
+description = "Default layout"
+
+[builderList]
+modelClass = "Kfund\Creator\Models\Ctypes"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "course_type"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+pageNumber = "{{ :page }}"
+
+[contenteditor]
+
+[localePicker]
+forceUrl = 1
+==
+{% set records = builderList.records %}
+
+<!DOCTYPE html>
+{% if this.page.url == '/' %}
+    <html lang="en" class="homepage">
+{% elseif this.page.url == '/course/:slug' or this.page.url == '/frontend_course' %}
+    <html lang="en" class="courses front">
+{% elseif this.page.url == '/posts' %}
+    <html lang="en" class="news front">
+{% elseif this.page.url == '/contacts' %}
+    <html lang="en" class="contacts front">
+{% elseif this.page.url == '/reg-form' %}
+    <html lang="en" class="registration front">
+{% else %}
+    <html lang="en" class="post">
+{% endif %}
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Courses site">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#317EFB" />
+    <title>{{ this.page.title }}</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ 'assets/logo_.ico'|theme }}">
+    <link rel="apple-touch-icon" href="#">
+    <link rel="stylesheet" href="{{ 'assets/owlcarousel/owl.carousel.min.css'|theme }}">
+    <link rel="stylesheet" href="{{ 'assets/owlcarousel/owl.theme.default.min.css'|theme }}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel='stylesheet' href="{{ 'assets/css/main.css'|theme }}">
+    {% styles %}
+</head>
+
+    <body>
+
+        <!-- Header -->
+        <a class="skip-link" href="#maincontent">Skip to main</a>
+    <div class="header-padding"> </div>
+    <div class="header-wrapper">
+        <header class="header">
+            <div>
+                {% if activeLocale == 'ua' %}
+                <a href="../" class="header--logo"> <img width="52" height="48" src="{{ 'assets/images/logo.svg'|theme }}" alt="logo"> <span> <span>школа</span> <span>креативної</span> <span>економіки</span></span>
+                </a>
+                {% else %}
+                <a href="../" class="header--logo"> <img width="52" height="48" src="{{ 'assets/images/logo.svg'|theme }}" alt="logo"> <span> <span>creative</span> <span>economy</span> <span>school</span></span>
+                </a>
+                {% endif %}
+                
+                <a href="#" class="header--logo__nav-active"> <img width="52" height="48" src="{{ 'assets/images/logo_nav.svg'|theme }}" alt="logo"> </a>
+            </div>
+
+            <ul class="header--lang">
+            <li class="lang-switcher ">{% component 'localePicker' %}</li>
+            </ul>
+            <div class="header--burger">
+                <div id="menu-toggle" class="burger--btn">
+                    <div class="header--burger-text">{{ 'Меню'|_ }}</div>
+                    <div id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div id="cross">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <div class="header--dropdown header--dropdown--modile">
+            <a class="header--dropdown--title main-button dropdown">{{ 'Курси'|_ }}</a>
+            <div class="header--dropdown--body" uk-dropdown="pos: bottom-justify">
+                <ul>
+                    {% for record in records %}
+                    <li>
+                        <small>{{ record.course_type }} </small>
+                        {% for course in record.courses %}
+                            <a href="/course/{{ course.slug }}">{{ course.title }} </a>
+                        {% endfor %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="header--desk-menu header--dropdown">
+            <ul class="header--main-links">
+                {% partial 'home/cities' %}
+                <li class="header--app-status">Online</li>
+                <li class="header--nav-item">{{ 'Про нас'|_ }}</li>
+                <li class="header--dropdown--title main-button header--nav-item dropdown btn-violet">{{ 'Курси'|_ }}</li>
+                <li class="header--dropdown--body" uk-dropdown="mode: click">
+                    <ul>
+                        {% for record in records %}
+                        <li>
+                            <small>{{ record.course_type }} </small>
+                                {% for course in record.courses %}
+                                    <a href="/course/{{ course.slug }}">{{ course.title }}</a>
+                                {% endfor %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="header--dropdown--title main-button header--nav-item dropdown other">{{ 'Кар’єрні можливості'|_ }}</li>
+                <li class="header--dropdown--body" uk-dropdown="mode: click">
+                    <ul>
+                        <li>
+
+                            <a href="#">{{ 'Вакансії'|_ }} </a>
+                        </li>
+                        <li>
+
+                            <a href="#">{{ 'Стажування'|_ }} </a>
+                        </li>
+                        <li>
+
+                            <a href="#">{{ 'Професійне тестування'|_ }}</a>
+                        </li>
+                        <li>
+                            <a href="/posts">{{ 'Корисні матеріали'|_ }}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="header--nav-item"><a href="{{ 'contacts'|page }}">{{ 'Контакти'|_ }}</a></li>
+                <li class="lang-switcher dropdown">{% component 'localePicker' %}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="mobile-menu">
+        <div class="mobile-menu--content">
+            <a class="mobile-menu--content--simple--link" href="#">{{ 'Про нас'|_ }}</a>
+            <ul uk-accordion="multiple: true">
+                <li>
+                    <a class="uk-accordion-title" href="#">{{ 'Курси'|_ }}</a>
+                    <div class="uk-accordion-content courses">
+                        <ul>
+                            {% for record in records %}
+                                <li>
+                                    <small>{{ record.course_type }} </small>
+                                    {% for course in record.courses %}
+                                        <a href="/course/{{ course.slug }}">{{ course.title }} </a>
+                                    {% endfor %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="uk-accordion-title" href="#">{{ 'Кар’єрні можливості'|_ }}</a>
+                    <div class="uk-accordion-content vacancies">
+                        <ul>
+                            <li>
+                                <a href="#">{{ 'Вакансії'|_ }} </a>
+                            </li>
+                            <li>
+    
+                                <a href="#">{{ 'Стажування'|_ }} </a>
+                            </li>
+                            <li>
+    
+                                <a href="#">{{ 'Професійне тестування'|_ }}</a>
+                            </li>
+                            <li>
+                                <a href="/posts">{{ 'Корисні матеріали'|_ }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <a class="mobile-menu--content--simple--link" href="{{ 'contacts'|page }}">{{ 'Контакти'|_ }}</a>
+        </div>
+        <div class="mobile-menu--footer">
+            <div>
+                <p>{{ 'Виберіть місто'|_ }}</p>
+                <div class="mobile-menu--footer--dropdown">
+                        {% partial 'home/cities-mobile' %}
+                </div>
+            </div>
+            <div>
+                <p>{{ 'Ми в соц. мережах'|_ }}</p>
+                <ul class="mobile-menu--footer--social">
+                    <li>
+                        <a href="#"> <img width="25" height="25" src="{{ 'assets/images/Instagram.svg'|theme }}" alt="Instagram"> </a>
+                    </li>
+                    <li>
+                        <a href="#"><img width="25" height="25" src="{{ 'assets/images/Twitter.svg'|theme }}" alt="Twitter"> </a>
+                    </li>
+                    <li>
+                        <a href="#"><img width="13" height="25" src="{{ 'assets/images/Facebook.svg'|theme }}" alt="Facebook"> </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="menu-bg"> </div>
+
+    <!-- Header -->
+
+        <!-- Content -->
+        {% page %}
+
+        <!-- Footer -->
+        {% partial 'footer' %}
+
+        <!-- Scripts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap"></script>
+        
+        
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+        <script src="{{ 'assets/lazy.min.js'|theme }}"></script>
+        <script src="{{ 'assets/uikit.min.js'|theme }}"></script>
+
+        <script type="text/javascript" src="{{ 'assets/videoapi.js'|theme }}"></script>
+        <script src="{{ 'assets/owlcarousel/owl.carousel.min.js'|theme }}"></script>
+        <script src="{{ 'assets/jquery.nice-select.min.js'|theme }}"></script>
+        <script type="text/javascript" src="{{ 'assets/js/main.js'|theme }}"></script>
+        
+        {% framework extras %}
+        {% scripts %}
+
+    </body>
+</html>

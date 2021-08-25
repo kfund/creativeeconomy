@@ -1,0 +1,66 @@
+<section id="registration-section">
+    <div class="uk-container">
+        <div class="small-description"> <a href="#">Деталі курсу</a></div>
+        <h1 class="main-title"> Реєстрація на курс</h1>
+        <form id="contact-form" class="form-template" action="" data-request="onSend">
+            <input type="hidden" name="contact_number">
+            <fieldset class="registration-inputs-wrapper">
+
+                <div class="field required">
+                    <label>Обери місто</label>
+                    <select name="city" id="city">
+                        <option value="">Обери серед доступних</option>
+                        {% partial 'reg-form/choose-city' %}
+                    </select>
+                    <!-- input element for validate prev element select  -->
+                    <input type="text" name="simple1" class="for_city" required>
+
+                </div>
+                <div class="field required">
+                    <label>Обери курс</label>
+                    <select name="course" id="course">
+                        <option value="">Обери курс</option>
+                        {% partial 'reg-form/choose-course' %}
+                    </select>
+                    <!-- input element for validate prev element select  -->
+                    <input type="text" name="simple2" class="for_course" required>
+
+                </div>
+                <div class="field required">
+                    <label for="email">Email</label>
+
+                    <input type="email" placeholder="Hello@school.com" name="reply_to" id="email" class="email" required>
+                </div>
+                <div class="field required">
+                    <label for="phone">Телефон</label>
+                    <input type="text" placeholder="(093) 763 77 22" name="phone" id="phone" class="required">
+                </div>
+            </fieldset>
+            <div class="newsletter-subscribe">
+                <label for="newsletter"><input type="checkbox" name="newsletter" id="newsletter" checked>
+                    <span></span>
+                    <p>Отримувати корисні матеріали та новини від креативної школи економіки</p>
+                </label>
+
+            </div>
+            <button class="main-button" type="submit">Хочу навчатися</button>
+            <p class="agb">Реєструючись, я погоджуюсь з <a href="#">Умовами використання </a> та <a href="#">Політикою
+                    конфіденційності </a> Школи креативної економіки</p>
+        </form>
+    </div>
+
+</section>
+
+    <div id="bg-overlay">
+        <div class="bg-overlay--VideoHead-popup-video-exit">
+            <div class="bg-overlay--VideoHead-popup-video-exit line-1"></div>
+            <div class="bg-overlay--VideoHead-popup-video-exit line-2"></div>
+        </div>
+    </div>
+    <div class="customer-support">
+        <div class="customer--overlay">
+            <div class="customer--line"></div>
+        </div>
+        <div class="customer--element"></div>
+    </div>
+    <div class="cursor"></div>

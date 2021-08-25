@@ -1,0 +1,138 @@
+[builderList]
+modelClass = "Kfund\Creator\Models\Courses"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "course"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+pageNumber = "{{ :page }}"
+==
+{% set records = builderList.records %}
+
+<section id="courses">
+    <div class="uk-container">
+        <h2 class="uk-text-center">{{ 'Навчальні курси'|_ }}</h2>
+        <div class="courses--tabs">
+            <ul class="uk-tab-bottom" uk-tab>
+                <li class="uk-active courses--tabs--title all-course"><a href="#">{{ 'Всі курси'|_ }}</a>
+                </li>
+                {% for record in records %}
+                {% for type in record.ctypes %}
+                <li class="courses--tabs--title"><a href="#">{{ type.course_type }}</a></li>
+                {% endfor %}
+                {% endfor %}
+            </ul>
+            <div class="courses--tabs--content active">
+
+
+                <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider>
+
+                    <ul class="uk-slider-items uk-grid">
+                        {% set break = false %}
+                        {% for record in records %}
+                        {% if loop.index >=7 %}
+                        {% set break = true %}
+                        {% else %}
+                        <a class="uk-width-4-5" href="#">
+                            <div class="uk-panel">
+                                <div class="uk-panel--card-overlay"> </div>
+                                <picture>
+                                    <source srcset="{{ record.course_img_webp.path }}" type="image/webp">
+                                    <img data-src="{{ record.course_image_png.path }}" class="lazyload" alt="">
+                                </picture>
+                                <div class="uk-position-center uk-text-center">
+                                    <p uk-slider-parallax="x: 200,-200">
+                                        {% for type in record.ctypes %}
+                                        <span class="courses--type"> {{ type.course_type }} </span>
+                                        {% endfor %}
+                                        <span class="courses--free-space">{{ 'Вільних місць:'|_ }} {{ record.free_places }}<span>
+                                    </p>
+                                    <h2 uk-slider-parallax="x: 100,-100">{{ record.title }}</h2>
+
+                                </div>
+                            </div>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+
+                    <ul class="uk-slider-nav uk-dotnav"></ul>
+
+                </div>
+
+            </div>
+
+            {% for record in records %}
+            {% for type in record.ctypes %}
+            <div class="courses--tabs--content">
+
+                <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-2" uk-slider>
+
+                    <ul class="uk-slider-items uk-grid">
+                        {% for record in records %}
+                        {% for type in record.ctypes %}
+                        <a class="uk-width-4-5" href="#">
+                            <div class="uk-panel">
+                                <div class="uk-panel--card-overlay"> </div>
+                                <picture>
+                                    <source srcset="{{ record.course_img_webp.path }}" type="image/webp">
+                                    <img data-src="{{ record.course_image_png.path }}" class="lazyload" alt="">
+                                </picture>
+                                <div class="uk-position-center uk-text-center">
+                                    <p uk-slider-parallax="x: 200,-200"><span class="courses--type">{{ type.course_type
+                                            }}</span>
+                                        <span class="courses--free-space">{{ 'Вільних місць:'|_ }} {{ record.free_places }}<span>
+                                    </p>
+                                    <h2 uk-slider-parallax="x: 100,-100">{{ record.title }}</h2>
+
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
+
+                    <ul class="uk-slider-nav uk-dotnav"></ul>
+
+                </div>
+
+            </div>
+            {% endfor %}
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+{% put scripts %}
+<script type="text/javascript">
+    window.onload = function () {
+        let uniqueCat = [];
+        $('.uk-tab .courses--tabs--title').each(function () {
+            if (uniqueCat.includes($(this).text())) {
+                $(this).css('display', 'none')
+            }
+            uniqueCat.push($(this).text())
+        })
+        $('.uk-tab .courses--tabs--title').on('click', function (index) {
+            let category = $(this).text();
+            let hideStatus = null;
+            if ($(this).attr('class').split(' ').includes('all-course')) {
+                hideStatus = true;
+            }
+            $('.uk-panel .courses--type').each(function () {
+                if ($(this).text() != category) {
+                    $(this).closest('a.uk-width-4-5').css('display', 'none')
+                }
+                else {
+                    $(this).closest('a.uk-width-4-5').css('display', 'block')
+                }
+                if (hideStatus) {
+                    $(this).closest('a.uk-width-4-5').css('display', 'block')
+                }
+            })
+        })
+    }
+</script>
+{% endput %}

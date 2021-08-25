@@ -1,0 +1,10 @@
+name: Ctypes
+form: $/kfund/creator/models/ctypes/fields.yaml
+modelClass: Kfund\Creator\Models\Ctypes
+defaultRedirect: kfund/creator/ctypes
+create:
+    redirect: 'kfund/creator/ctypes/update/:id'
+    redirectClose: kfund/creator/ctypes
+update:
+    redirect: kfund/creator/ctypes
+    redirectClose: kfund/creator/ctypes

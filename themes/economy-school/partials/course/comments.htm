@@ -1,0 +1,43 @@
+[builderList]
+modelClass = "Kfund\Creator\Models\Comments"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No posts found"
+detailsPage = "post"
+detailsKeyColumn = "id"
+detailsUrlParameter = "id"
+recordsPerPage = 0
+pageNumber = "{{ :page }}"
+==
+
+{% set records = builderList.records %}
+
+<div class="owl-carousel students-review--owl">
+    {% for record in records %}
+    <div class="slides" data-count='{{ loop.index + 1 }}'>
+        <div class="students-review--owl-card">
+            <div class="owl-card--header">
+                <picture>
+                    <source srcset="{{ record.photo_webp.path }}" type="image/webp">
+                    <img data-src="{{ record.photo_png.path }}" class="lazyload owl-card--header-avatar" alt="">
+                </picture>
+                <div class="owl-card--header-student">{{ record.name }}</div>
+                <img class="owl-card--header-icon" src="{{ 'assets/images/courses/heart.png'|theme }}" alt="">
+            </div>
+            <div class="owl-card--body">{{ record.text|raw }}<span class="show-more"> ...</span>
+                <span class="hided"></span>
+            </div>
+            <div class="owl-card--footer">
+                <div class="owl-card--footer--wrapper">
+                    <div><span class="uk-text-center course-category"><span>IT</span></span>
+                    </div>
+                    <div>
+                        <h3 class="owl-card--footer--wrapper-profession">{{ record.courses[0].title }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

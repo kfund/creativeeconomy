@@ -1,0 +1,49 @@
+<form name="form-subscribe-andradedev" id="form-subscribe-andradedev" data-request="{{ __SELF__ }}::onAddSubscriber" data-request-update="'{{__SELF__}}::alert': '#result'">
+    <fieldset class="registration-inputs-wrapper">
+
+        <div class="field required">
+            <label>Обери місто</label>
+            <select name="city" id="city">
+                <option value="">Обери серед доступних</option>
+                <option>Київ</option>
+                <option>Пункт 2</option>
+                <option>Пункт 3</option>
+            </select>
+            <!-- input element for validate prev element select  -->
+            <input type="text" name="simple1" class="for_city" required>
+
+        </div>
+        <div class="field required">
+            <label>Обери курс</label>
+            <select name="course" id="course">
+                <option value="">Обери курс</option>
+                <option>Frontend</option>
+                <option>Пункт 2</option>
+                <option>Пункт 3</option>
+            </select>
+            <!-- input element for validate prev element select  -->
+            <input type="text" name="simple2" class="for_course" required>
+
+        </div>
+        <div class="field required">
+            <label for="email">Email</label>
+
+            <input type="email" placeholder="Hello@school.com" name="email" id="email" required>
+        </div>
+        <div class="field required">
+            <label for="phone">Телефон</label>
+            <input type="text" placeholder="(093) 763 77 22" name="phone" id="phone" class="required">
+        </div>
+    </fieldset>
+    <div class="newsletter-subscribe">
+        <label for="newsletter"><input type="checkbox" name="newsletter" id="newsletter" checked>
+            <span></span>
+            <p>Отримувати корисні матеріали та новини від креативної школи економіки</p>
+        </label>
+
+    </div>
+    <button class="main-button" type="submit" form="form-subscribe-andradedev">Хочу навчатися</button>
+    <p class="agb">Реєструючись, я погоджуюсь з <a href="#">Умовами використання </a> та <a href="#">Політикою
+            конфіденційності </a> Школи креативної економіки</p>
+</form>
+<div id="result"></div>

@@ -1,0 +1,79 @@
+title = "Сontacts"
+url = "/contacts"
+layout = "default"
+is_hidden = 0
+==
+    <section id="contacts-section">
+        <div class="uk-container">
+            <h1 class="main-title">{{ 'Контакти'|_ }}</h1>
+            <div class="contacts-wrapper">
+                <div class="contacts__address">
+                    <div class="contacts-label">{{ 'Адреса'|_ }}</div>
+                    <div class="contacts__address--description">01004, Украина, г. Киев ул. Дорогожицька, 3</div>
+                </div>
+            </div>
+            <div class="contacts-wrapper">
+                <div class="contacts__email col-2-lg">
+                    <div class="contacts__email__left-col">
+                        <div class="contacts-label">{{ 'Підтримка'|_ }}</div>
+                        <a href="mailto:support@sh.ua">support@sh.ua</a>
+                    </div>
+                    <div class="contacts__email__right-col">
+                        <div class="contacts-label">{{ 'Запитання'|_ }}</div>
+                        <a href="mailto:support@sh.ua">requst@sh.ua</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contacts-wrapper">
+                <div class="contacts__phone col-2-lg">
+                    <div class="contacts__phone__left-col">
+                        <div class="contacts-label">{{ 'Телефон'|_ }}</div>
+                        <a href="tel:+38097123-44-11">+380 (97) 123-44-11</a>
+                        <a href="tel:+38097123-44-11">+380 (97) 123-44-11</a>
+
+                    </div>
+                    <div class="contacts__phone__right-col">
+                        <a href="tel:+38097123-44-11">+380 (97) 123-44-11</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contacts-wrapper">
+                <div class="contacts-label">{{ 'Ми в соц. мережах'|_ }}</div>
+                <ul class="socials">
+                    <li>
+                        <a href="#"> <img width="25" height="25" src="{{ 'assets/images/Instagram-black.svg'|theme }}" alt="Instagram"> </a>
+                    </li>
+                    <li>
+                        <a href="#"><img width="25" height="25" src="{{ 'assets/images/Twitter-black.svg'|theme }}" alt="Twitter"> </a>
+                    </li>
+                    <li>
+                        <a href="#"><img width="13" height="25" src="{{ 'assets/images/Facebook-black.svg'|theme }}" alt="Facebook"> </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="maps-wrapper overlay">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d162535.41019996532!2d30.38856900000001!3d50.466878999999985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e0!4m0!4m5!1s0x40d4cdb9c32b6cef%3A0xfb97fbd3bd99c72!2z0J7RgtC00LXQuyDQn9GA0L7QtNCw0LYg0JbQmiBVTklULkhvbWUgfCDQrtCd0JjQoi7QpdC-0YPQvCwg0KHRltC8J9GXINCl0L7RhdC70L7QstC40YUsIDgsINCa0LjRl9CyLCAwMjAwMA!3m2!1d50.4669033!2d30.4586203!5e0!3m2!1sru!2sua!4v1628342429620!5m2!1sru!2sua"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <h2 class="toggle-map"> <span>{{ 'Ми на мапі'|_ }}</span></h2>
+        </div>
+    </section>
+    {% partial 'reg-bottom' %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            $('.maps-wrapper').on('click', function(event) {
+                event.stopPropagation()
+                $(this).removeClass('overlay')
+            })
+            $('.toggle-map').on('click', function(event) {
+                event.stopPropagation()
+                if ($('.maps-wrapper').hasClass('overlay')) {
+                    $('.maps-wrapper').removeClass('overlay');
+                } else {
+                    $('.maps-wrapper').addClass('overlay');
+                }
+
+            })
+        });
+    </script>

@@ -1,0 +1,10 @@
+name: Settings
+form: $/kfund/creator/models/settings/fields.yaml
+modelClass: Kfund\Creator\Models\Settings
+defaultRedirect: kfund/creator/settings
+create:
+    redirect: 'kfund/creator/settings/update/:id'
+    redirectClose: kfund/creator/settings
+update:
+    redirect: kfund/creator/settings
+    redirectClose: kfund/creator/settings

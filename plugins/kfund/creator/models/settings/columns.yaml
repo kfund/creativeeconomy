@@ -1,0 +1,11 @@
+columns:
+    discount:
+        label: Discount
+        type: switch
+        searchable: true
+        sortable: true
+    title:
+        label: Title
+        type: text
+        searchable: true
+        sortable: true

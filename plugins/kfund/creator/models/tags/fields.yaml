@@ -1,0 +1,12 @@
+fields:
+    title:
+        label: 'Tag name'
+        span: auto
+        type: text
+    slug:
+        label: slug
+        span: auto
+        preset:
+            field: title
+            type: slug
+        type: text

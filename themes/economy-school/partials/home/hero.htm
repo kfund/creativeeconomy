@@ -1,0 +1,35 @@
+[builderList]
+modelClass = "Kfund\Creator\Models\Courses"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+pageNumber = "{{ :page }}"
+==
+
+{% set records = builderList.records %}
+
+<section id="hero">
+        <div class="uk-container">
+            {% component 'contenteditor' file="welcome.htm" fixture="h1" class="hero--site-slogan uk-text-center"%}
+        </div>
+        <div class="owl-theme  owl-carousel owl-carousel--hero">
+            {% for record in records %}
+            <div>
+                <picture>
+                    <source srcset="{{ record.course_img_webp.path }}" type="image/webp">
+                    <img data-src="{{ record.course_image_png.path }}" class="lazyload" alt="">
+                </picture>
+                <div class="hero--item-description">
+                    <div class="hero--item-description-text">{{ record.title }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="hero---scroll-to-courses">
+            <a href="#registration"><img data-src="{{ 'assets/images/arrow_down.svg'|theme }}" class="lazyload" alt=""></a>
+        </div>
+</section>

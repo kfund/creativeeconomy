@@ -1,0 +1,47 @@
+[builderList]
+modelClass = "Kfund\Creator\Models\Posts"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No posts found"
+detailsPage = "post"
+detailsKeyColumn = "id"
+detailsUrlParameter = "id"
+recordsPerPage = 0
+pageNumber = "{{ :page }}"
+==
+{% set records = builderList.records %}
+<section id="related-posts">
+  <div class="uk-container">
+    <h2 class="uk-text-center">Пости</h2>
+    <div class="posts-wrapper">
+      {% set break = false %}
+      {% for record in records %}
+      {% if loop.index >=7 %}
+      {% set break = true %}
+      {% else %}
+      <a href="/post/{{ record.id }}" class="post-wrapper__item overlayShow">
+        <div class="uk-panel--card-overlay"> </div>
+        <picture>
+          <source srcset="{{ record.post_image.path }}" type="image/webp">
+          <img data-src="{{ record.post_image.path }}" class="lazyload" alt="{{ record.title }}">
+        </picture>
+        <div class="uk-overlay uk-position-top uk-dark">
+          <div class="post-info">
+            <div class="small-description post-info__category">
+              {% for tag in record.tags %}
+              <span href="#">{{ tag.title }}</span>
+              {% endfor %}
+            </div>
+            <span class="info__date">{{ record.date }}
+            </span>
+          </div>
+          <br><br><br><br><br>
+          <p>{{ record.title }}</p>
+        </div>
+      </a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

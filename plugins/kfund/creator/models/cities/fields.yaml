@@ -1,0 +1,16 @@
+fields:
+    city:
+        label: City
+        span: auto
+        type: text
+    slug:
+        label: slug
+        span: auto
+        preset:
+            field: city
+            type: slug
+        type: text
+    adress:
+        label: Adress
+        span: auto
+        type: text

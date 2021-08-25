@@ -1,0 +1,59 @@
+[builderList]
+modelClass = "Kfund\Creator\Models\Teachers"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "name"
+noRecordsMessage = "No teachers found"
+detailsPage = "-"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+pageNumber = "{{ :page }}"
+
+[contenteditor]
+==
+
+{% set records = builderList.records %}
+<section id="team">
+    <div class="uk-container">
+        <h2 class="uk-text-center">{{ 'Познайомся з нашою командою'|_ }}</h2>
+    </div>
+    <div class="owl-carousel--team  owl-carousel  owl-theme">
+        {% for record in records %}
+        <div class="item">
+            <div class="picture-wrapper">
+                <picture>
+                    <source srcset="{{ record.teacher_photo_webp.path }}" type="image/webp">
+                    <img data-src="{{ record.teacher_photo_webp.path }}" class="lazyload" alt="">
+                </picture>
+            </div>
+            <div class="team--role">
+                <h3 class="teammate--name">{{ record.name }}</h3>
+                <p class="teammate--rank">{{ record.title }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="team__desk-custom" uk-parallax="bgx: -600">
+        {% for record in records %}
+        <div class="item item-coords">
+            <div class="picture-wrapper">
+                <picture>
+                    <source srcset="{{ record.teacher_photo_webp.path }}" type="image/webp">
+                    <img data-src="{{ record.teacher_photo_webp.path }}" class="lazyload" alt="">
+                </picture>
+            </div>
+            <div class="team--role">
+                <h3 class="teammate--name">{{ record.name }}</h3>
+                <p class="teammate--rank">{{ record.title }}</p>
+            </div>
+        </div>
+        {% endfor %}   
+    </div>
+    </div>
+    <div class="uk-container">
+        {% component 'contenteditor' file="teachers/team-description.htm" fixture="p" class="team--description"%}
+        <div class="team--watch-all-team"> <a class="main-button  team--action" href="#">{{ 'Всі викладачі'|_ }}</a></div>
+    </div>
+    </div>
+    <div class="team--background-overlay"> </div>
+</section>

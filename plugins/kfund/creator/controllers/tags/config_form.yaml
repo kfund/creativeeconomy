@@ -1,0 +1,10 @@
+name: Tags
+form: $/kfund/creator/models/tags/fields.yaml
+modelClass: Kfund\Creator\Models\Tags
+defaultRedirect: kfund/creator/tags
+create:
+    redirect: 'kfund/creator/tags/update/:id'
+    redirectClose: kfund/creator/tags
+update:
+    redirect: kfund/creator/tags
+    redirectClose: kfund/creator/tags

@@ -1,0 +1,10 @@
+name: Posts
+form: $/kfund/creator/models/posts/fields.yaml
+modelClass: Kfund\Creator\Models\Posts
+defaultRedirect: kfund/creator/posts
+create:
+    redirect: 'kfund/creator/posts/update/:id'
+    redirectClose: kfund/creator/posts
+update:
+    redirect: kfund/creator/posts
+    redirectClose: kfund/creator/posts

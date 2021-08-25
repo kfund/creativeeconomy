@@ -1,0 +1,6 @@
+plugin:
+    name: 'kfund.contact::lang.plugin.name'
+    description: 'kfund.contact::lang.plugin.description'
+    author: kfund
+    icon: oc-icon-adjust
+    homepage: ''

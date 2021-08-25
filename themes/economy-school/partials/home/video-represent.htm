@@ -1,0 +1,41 @@
+[builderList]
+modelClass = "Kfund\Creator\Models\Settings"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "discount"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsKeyColumn = "id"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+==
+
+{% set records = builderList.records %}
+
+<section id="video-represent">
+    <div class="uk-container">
+        {% component 'contenteditor' file="home/video-heading.htm" fixture="h2" %}
+        {% component 'contenteditor' file="home/video-desrc.htm" fixture="p" %}
+        <div class="video-iframe container-xl">
+            <div class="video-iframe--banner">
+                <div class="video-iframe--content" data-video="{{ records[0].video_link }}">
+                    <div class="target">
+                        <a href="#" class="video__button text" uk-parallax="y: 60, -100"> {{ 'Про курс'|_ }}<span> {{ 'Про курс'|_ }}</span> <img
+                                data-src="{{ 'assets/images/icon_video.svg'|theme }}" class="lazyload" uk-parallax="y: 60, -100"
+                                alt="play video"> </a>
+                    </div>
+                </div>
+            </div>
+            <div class="trailer">
+                <div class="cover">
+
+                    <div class="tv">
+                        <div class="screen" id="tv"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="video-iframe--logo-overlay" uk-parallax="y: -10, 30">
+                <img data-src="{{ 'assets/images/logo_nav.svg'|theme }}" class="lazyload" alt="logo over video">
+            </div>
+        </div>
+</section>

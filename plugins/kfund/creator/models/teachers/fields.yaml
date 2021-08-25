@@ -1,0 +1,39 @@
+fields:
+    name:
+        label: 'Teacher name'
+        span: auto
+        type: text
+    slug:
+        label: slug
+        span: auto
+        preset:
+            field: name
+            type: slug
+        type: text
+    title:
+        label: 'Short description'
+        span: auto
+        type: text
+    teacher_photo_png:
+        label: 'Teacher photo (.png)'
+        mode: image
+        fileTypes: png
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        cssClass: teammate--rank
+        type: fileupload
+    teacher_photo_webp:
+        label: 'Teacher photo (.webp)'
+        mode: image
+        fileTypes: webp
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        cssClass: teammate--rank
+        type: fileupload
+        comment: 'To convert image from .png to .webp - use https://cloudconvert.com/png-to-webp'

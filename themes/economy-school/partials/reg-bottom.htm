@@ -1,0 +1,52 @@
+[builderList]
+modelClass = "Kfund\Creator\Models\Settings"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No courses found"
+detailsPage = "-"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+pageNumber = "{{ :page }}"
+
+[builderList builderList2]
+modelClass = "Kfund\Creator\Models\Courses"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+pageNumber = "{{ :page }}"
+==
+
+{% set records = builderList.records %}
+{% set list = builderList2.records %}
+
+<section id="registration">
+    <a class="footer--logo" href="#"><img width="52" height="48" class="footer--logo-rotate" src="{{ 'assets/images/logo_nav.svg'|theme }}" alt="logo">
+              </a>
+  <div class="uk-container">
+    {% if records[0].discount == '1' %}
+      <h2 class="registration--description">{{ 'Реєструйся на онлайн навчання та отримай <span>15%</span> знижку!'|_ }}</h2>
+    {% endif %}
+    <form>
+          <select class="nice-select wide">
+              <option value="1">{{ 'Вибери курс'|_ }}</option>
+              {% for item in list %}
+                <option value="{{ loop.index + 1 }}">{{ item.title }}</option>
+              {% endfor %}
+          </select>
+          
+
+          <button class="registration--registration-on-course" type="submit">{{ 'Зареєструйся'|_ }}</button>
+    </form>
+    </div>
+</section>
+<div id="bg-overlay">
+  <div class="bg-overlay--VideoHead-popup-video-exit">
+      <div class="bg-overlay--VideoHead-popup-video-exit line-1"></div>
+      <div class="bg-overlay--VideoHead-popup-video-exit line-2"></div>
+  </div>
+</div>

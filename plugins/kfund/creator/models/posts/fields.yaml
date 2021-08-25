@@ -1,0 +1,96 @@
+fields:
+    title:
+        label: Title
+        span: auto
+        type: text
+    slug:
+        label: slug
+        span: auto
+        preset:
+            field: title
+            type: slug
+        type: text
+    short_descr:
+        label: 'Short description'
+        span: auto
+        type: text
+    date:
+        label: 'Publication date'
+        mode: datetime
+        span: auto
+        type: datepicker
+    discount:
+        label: Discount
+        span: auto
+        type: checkbox
+    tags:
+        label: Tags
+        nameFrom: title
+        descriptionFrom: description
+        span: auto
+        type: relation
+    post_image:
+        label: 'Cover image'
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+tabs:
+    fields:
+        post_image_inner:
+            label: 'Inner post image'
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: 'Inner post page'
+        image_source:
+            label: 'Image source'
+            span: auto
+            type: text
+            tab: 'Inner post page'
+        paragraph_1:
+            label: 'First paragraph'
+            size: small
+            span: auto
+            type: richeditor
+            tab: 'Inner post page'
+        paragraph_2:
+            label: 'Second paragraph'
+            size: small
+            span: auto
+            type: richeditor
+            tab: 'Inner post page'
+        video_link:
+            label: 'Video link'
+            span: auto
+            type: text
+            tab: 'Inner post page'
+        article_1_title:
+            label: 'Article 1 title'
+            span: auto
+            type: text
+            tab: 'Inner post page'
+        article_1_text:
+            label: 'Article 1 text'
+            size: small
+            span: auto
+            type: richeditor
+            tab: 'Inner post page'
+        article_2_title:
+            label: 'Article 2 title'
+            span: auto
+            type: text
+            tab: 'Inner post page'
+        article_2_text:
+            label: 'Article 2 text'
+            size: small
+            span: auto
+            type: richeditor
+            tab: 'Inner post page'

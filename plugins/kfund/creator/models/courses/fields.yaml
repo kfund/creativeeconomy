@@ -1,0 +1,192 @@
+fields:
+    title:
+        label: 'Course title'
+        span: auto
+        type: text
+    slug:
+        label: slug
+        span: auto
+        preset:
+            field: title
+            type: slug
+        type: text
+    free_places:
+        label: 'Free places'
+        span: auto
+        type: number
+    ctypes:
+        label: 'Course type'
+        nameFrom: course_type
+        descriptionFrom: description
+        span: auto
+        type: relation
+    course_image_png:
+        label: 'Course cover image (.png)'
+        mode: image
+        fileTypes: png
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        required: 1
+        type: fileupload
+    course_img_webp:
+        label: 'Course image (.webp)'
+        mode: image
+        fileTypes: webp
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        required: 1
+        type: fileupload
+        comment: 'To convert image from .png to .webp - use https://cloudconvert.com/png-to-webp'
+    discount:
+        label: Discount
+        span: auto
+        type: checkbox
+tabs:
+    fields:
+        short_descr:
+            label: 'Short description'
+            span: auto
+            type: text
+            tab: 'Course inner info'
+        course_image_inner:
+            label: 'Course image inner'
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            comment: 'Image should be 600*1200 for better displaying'
+            tab: 'Course inner info'
+        start_date:
+            label: 'Start date'
+            mode: datetime
+            span: auto
+            type: datepicker
+            tab: 'Course inner info'
+        for_whom:
+            label: 'For whom this course'
+            size: small
+            span: auto
+            type: richeditor
+            tab: 'Course inner info'
+        st_years:
+            label: Years
+            span: auto
+            type: number
+            tab: 'Course inner info'
+        st_hours:
+            label: Hours
+            span: auto
+            type: number
+            tab: 'Course inner info'
+        st_percents:
+            label: Percent
+            span: auto
+            type: number
+            tab: 'Course inner info'
+        st_students:
+            label: Students
+            span: auto
+            type: number
+            tab: 'Course inner info'
+        for_what:
+            label: 'For what this course'
+            size: small
+            span: auto
+            type: richeditor
+            tab: 'Course inner info'
+        video_link:
+            label: 'Video link'
+            span: auto
+            type: text
+            tab: 'Course inner info'
+        course_technologies:
+            label: 'Course technologies'
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: 'Course inner info'
+secondaryTabs:
+    fields:
+        acc_1_title:
+            label: Title
+            span: auto
+            type: text
+            tab: Accordeon
+        acc_1_text:
+            label: Text
+            size: small
+            span: auto
+            type: richeditor
+            tab: Accordeon
+        acc_2_title:
+            label: Title
+            span: auto
+            type: text
+            tab: Accordeon
+        acc_2_text:
+            label: Text
+            size: small
+            span: auto
+            type: richeditor
+            tab: Accordeon
+        acc_3_title:
+            label: Title
+            span: auto
+            type: text
+            tab: Accordeon
+        acc_3_text:
+            label: Text
+            size: small
+            span: auto
+            type: richeditor
+            tab: Accordeon
+        acc_4_title:
+            label: Title
+            span: auto
+            type: text
+            tab: Accordeon
+        acc_4_text:
+            label: Text
+            size: small
+            span: auto
+            type: richeditor
+            tab: Accordeon
+        acc_5_title:
+            label: Title
+            span: auto
+            type: text
+            tab: Accordeon
+        acc_5_text:
+            label: Text
+            size: small
+            span: auto
+            type: richeditor
+            tab: Accordeon
+        lessons_count:
+            label: Lessons
+            span: auto
+            type: number
+            tab: Price
+        hours_count:
+            label: Hours
+            span: auto
+            type: number
+            tab: Price
+        course_price:
+            label: 'Course price'
+            span: auto
+            type: number
+            tab: Price

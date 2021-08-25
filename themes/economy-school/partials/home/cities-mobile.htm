@@ -1,0 +1,23 @@
+[builderList]
+modelClass = "Kfund\Creator\Models\Cities"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+pageNumber = "{{ :page }}"
+==
+
+{% set records = builderList.records %}
+<a class="footer--dropdown--title">{{ records[0].city|_ }}</a>
+<div uk-dropdown="mode: click" class="footer--dropdown--content">
+    <ul>
+        {% for record in records %}
+        <li>
+            <a href="#">{{ record.city }} </a>
+        </li>
+    {% endfor %}
+    </ul>
+</div>

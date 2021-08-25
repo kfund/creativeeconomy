@@ -1,0 +1,44 @@
+plugin:
+    name: 'kfund.creator::lang.plugin.name'
+    description: 'kfund.creator::lang.plugin.description'
+    author: kfund
+    icon: oc-icon-diamond
+    homepage: ''
+navigation:
+    creator:
+        label: Creator
+        url: kfund/creator/posts
+        icon: icon-database
+        sideMenu:
+            posts:
+                label: Posts
+                url: kfund/creator/posts
+                icon: icon-pencil-square-o
+            tags:
+                label: Tags
+                url: kfund/creator/tags
+                icon: icon-tags
+            comments:
+                label: Comments
+                url: kfund/creator/comments
+                icon: icon-text-height
+            teachers:
+                label: Teachers
+                url: kfund/creator/teachers
+                icon: icon-user
+            courses:
+                label: Courses
+                url: kfund/creator/courses
+                icon: icon-medium
+            course_type:
+                label: 'Courses types'
+                url: kfund/creator/ctypes
+                icon: icon-sitemap
+            cities:
+                label: Cities
+                url: kfund/creator/cities
+                icon: icon-building-o
+            settings:
+                label: Settings
+                url: kfund/creator/settings
+                icon: icon-slack

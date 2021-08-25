@@ -1,0 +1,63 @@
+title = "Registration form"
+url = "/reg-form"
+layout = "default"
+is_hidden = 0
+
+[contactform]
+==
+{% component 'contactform' %}
+<script>
+        function checkSelect() {
+            $('select option:selected').each(function() {
+                if ($(this).val().length == 0) {
+                    $(this).parent().addClass('empty')
+                } else {
+                    $(this).parent().removeClass('empty')
+                }
+            })
+        }
+        window.onload = () => {
+            checkSelect()
+            $('#city').niceSelect();
+            $('#course').niceSelect();
+            $.validator.addMethod('customphone', function(value, element) {
+                return this.optional(element) || /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/.test(value);
+            }, "Please enter a valid phone number");
+
+            $("#registration-form").validate({
+                rules: {
+                    phone: 'customphone',
+                },
+                messages: {
+                    phone: "Введіть коректний номер",
+                    email: "Введіть коректний Email",
+                    simple2: "Оберіть курс з доступних",
+                    simple1: "Оберіть місто з доступних",
+                },
+                debug: true
+            });
+            $('#city').on('change', function() {
+                checkSelect()
+                if ($(this).val().length !== 0) {
+                    $('.for_city').val('ok')
+                    return
+                }
+                $('.for_city').val('')
+            })
+            $('#course').on('change', function() {
+                checkSelect()
+                if ($(this).val().length !== 0) {
+                    $('.for_course').val('ok')
+                    return
+                }
+                $('.for_course').val('')
+            })
+            $('#registration-form').submit(function() {
+                if ($(this).valid()) {
+                    alert('form sending');
+
+                }
+            });
+
+        }
+    </script>

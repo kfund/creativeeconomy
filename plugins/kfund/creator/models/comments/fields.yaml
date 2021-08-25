@@ -1,0 +1,37 @@
+fields:
+    name:
+        label: Name
+        span: auto
+        type: text
+    courses:
+        label: courses
+        nameFrom: title
+        descriptionFrom: description
+        span: auto
+        type: relation
+    photo_webp:
+        label: 'Photo (.webp)'
+        mode: image
+        fileTypes: webp
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+        comment: 'To convert image from .png to .webp - use https://cloudconvert.com/png-to-webp'
+    photo_png:
+        label: 'Photo (.png)'
+        mode: image
+        fileTypes: png
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+    text:
+        label: Comment
+        size: large
+        span: auto
+        type: richeditor

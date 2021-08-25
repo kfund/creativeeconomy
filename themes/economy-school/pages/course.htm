@@ -1,0 +1,287 @@
+title = "Course"
+url = "/course/:slug"
+layout = "default"
+is_hidden = 0
+
+[builderDetails]
+modelClass = "Kfund\Creator\Models\Courses"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "title"
+notFoundMessage = "Record not found"
+==
+
+{% set record = builderDetails.record %}
+<section id="hero">
+        <div class="uk-container uk-container-small ">
+            <div class="hero--left-side">
+                    {% for type in record.ctypes %}
+                        <span class="hero--courses-mark"> <span>{{ type.course_type }}</span> </span>
+                    {% endfor %}
+                <h1 class="hero--site-slogan uk-text-left "><span class="hero--site-slogan-padding">{{ record.title }}</span> course</h1>
+                <p class="hero--description">{{ record.short_descr }}</p>
+                <div class="hero--left-side--regisration ">
+                    <div class="hero--regisration-gray-bg">
+                        <!-- date when courses started in element with class "end-course" dataset f ex: years - XXXX , month - XX ...-->
+                        <p class="end-course" data-years="{{ record.start_date|date('Y') }}" data-month="{{ record.start_date|date('m') }}" data-days="{{ record.start_date|date('d') }}" data-hours="00" data-minutes="00" data-seconds="00"> Реєстрація на курс закінчиться через</p>
+                        <div class="left-side--regisration-time-wrapper">
+                            <div class="regisration-time-wrapper--blocks">
+                                <div class="days time-wrapper--number"> 00</div>
+                                <div class="time-wrapper--text">{{ 'днів'|_ }}</div>
+                            </div>
+                            <div class="regisration-time-wrapper--blocks">
+                                <div class="hours time-wrapper--number">12</div>
+                                <div class="time-wrapper--text">{{ 'годин'|_ }}</div>
+                            </div>
+                            <div class="regisration-time-wrapper--blocks">
+                                <div class="minutes time-wrapper--number">13</div>
+                                <div class="time-wrapper--text">{{ 'хвилин'|_ }}</div>
+                            </div>
+                            <div class="regisration-time-wrapper--blocks">
+                                <div class="seconds time-wrapper--number">36</div>
+                                <div class="time-wrapper--text">{{ 'секунд'|_ }}</div>
+                            </div>
+                        </div>
+                        <p class="registration--free-space"> Вільних місць залишилось у наборі</p>
+                        <div class="registration--number-of-free-space">{{ record.free_places }}</div>
+                    </div>
+                    <div class="registration--footer"> <a href="/reg-form">Реєструйся</a> </div>
+                </div>
+                {% if record.discount == '1' %}
+                    <div class="hero--post-description"> <span class="hero--post-description--attention orange-attention"><span>!</span></span>
+                        <p>Реєструйся на онлайн навчання та отримай <span>15%</span> знижку!</p>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="hero--right-side" style="background-image: url({{ record.course_image_inner.path }})">
+
+            </div>
+        </div>
+    </section>
+    <section id="mobile-navigation">
+        <div class="uk-container uk-container-small ">
+            <div class="mobile-navigation-wrapper">
+                <div class="header--burger">
+                    <div id="menu-toggle" class="burger--btn">
+                        <div id="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <span>{{ 'Навігація'|_ }}</span>
+                </div>
+                <ul class="mobile-navigation--list">
+                    <li>
+                        <a href="#course-for">{{ 'Для кого курс'|_ }} </a>
+                    </li>
+                    <li>
+                        <a href="#video-represent">{{ 'Навіщо курс'|_ }} </a>
+                    </li>
+                    <li>
+                        <a href="#course-program">{{ 'Програма курсів'|_ }} </a>
+                    </li>
+                    <li>
+                        <a href="#course-technology">{{ 'Технології'|_ }} </a>
+                    </li>
+                    <li>
+                        <a href="#course-price">{{ 'Ціна'|_ }} </a>
+                    </li>
+                    <li>
+                        <a href="#students-review">{{ 'Відгуки'|_ }} </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="course-for">
+        <div class="uk-container uk-container-small ">
+            <h2>{{ 'Для кого курс'|_ }}</h2>
+            <p>{{ record.for_whom|raw }}</p>
+            <div class="course-for--numbers-achievement">
+                <div class="numbers-achievement--wrapper">
+                    <div class="numbers-achievement--wrapper-number">{{ record.st_years }}+</div>
+                    <div class="numbers-achievement--wrapper-description">{{ 'Років практики в онлайн та офлайн навчанні'|_ }}
+                    </div>
+                </div>
+                <div class="numbers-achievement--wrapper">
+                    <div class="numbers-achievement--wrapper-number">{{ record.st_hours }}+</div>
+                    <div class="numbers-achievement--wrapper-description">{{ 'Годин навчання на практиці'|_ }}</div>
+                </div>
+                <div class="numbers-achievement--wrapper">
+                    <div class="numbers-achievement--wrapper-number">{{ record.st_percents }}%</div>
+                    <div class="numbers-achievement--wrapper-description">{{ 'Студентів отримує роботу в ІТ-компаніях'|_ }}</div>
+                </div>
+                <div class="numbers-achievement--wrapper">
+                    <div class="numbers-achievement--wrapper-number">{{ record.st_students }}+</div>
+                    <div class="numbers-achievement--wrapper-description">{{ 'Випускників по всій Україні'|_ }}</div>
+                </div>
+            </div>
+
+
+    </section>
+    <section id="video-represent">
+        <div class="uk-container uk-container-small ">
+            <h2>{{ 'Навіщо цей курс'|_ }}</h2>
+            <p>{{ record.for_what|raw }}</p>
+        </div>
+        <div class="video-iframe container-xl">
+            <div class="video-iframe--banner">
+                <div class="video-iframe--content" data-video="{{ records.video_link }}">
+                    <div class="target">
+                        <a href="#" class="video__button text">{{ 'Про курс'|_ }}<span>{{ 'Про курс'|_ }}</span> <img
+                                data-src="{{ 'assets/images/icon_video.svg'|theme }}" class="lazyload" alt="play video"> </a>
+                    </div>
+                </div>
+            </div>
+            <div class="trailer">
+                <div class="cover">
+
+                    <div class="tv">
+                        <div class="screen" id="tv"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="course-program">
+        <div class="uk-container uk-container-small ">
+            <h2>Програма курсів</h2>
+            <ul uk-accordion>
+                <li class="uk-open">
+                    <a href="#" class="registration-action">{{ 'Реєструйся'|_ }}</a>
+                    <a class="uk-accordion-title" href="#">{{ record.acc_1_title|_ }}</a>
+                    <div class="uk-accordion-content">
+                        <p>{{ record.acc_1_text|raw }}</p>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" class="registration-action">{{ 'Реєструйся'|_ }}</a>
+                    <a class="uk-accordion-title" href="#">{{ record.acc_2_title|_ }}</a>
+                    <div class="uk-accordion-content">
+                        <p>{{ record.acc_2_text|raw }}</p>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" class="registration-action">{{ 'Реєструйся'|_ }}</a>
+                    <a class="uk-accordion-title" href="#">{{ record.acc_3_title|_ }}</a>
+                    <div class="uk-accordion-content">
+                        <p>{{ record.acc_3_text|raw }}</p>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" class="registration-action">{{ 'Реєструйся'|_ }}</a>
+                    <a class="uk-accordion-title" href="#">{{ record.acc_4_title|_ }}</a>
+                    <div class="uk-accordion-content">
+                        <p>{{ record.acc_4_text|raw }}</p>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" class="registration-action">{{ 'Реєструйся'|_ }}</a>
+                    <a class="uk-accordion-title" href="#">{{ record.acc_5_title|_ }}</a>
+                    <div class="uk-accordion-content">
+                        <p>{{ record.acc_5_text|raw }}</p>
+                    </div>
+                </li>
+
+            </ul>
+    </section>
+    <section id="course-technology">
+        <div class="uk-container uk-container-small ">
+            <h2 class="uk-text-center course-technology--title">{{ 'Технології'|_ }}</h2>
+            <div class="course-technology--grid">
+                {% for image in record.course_technologies %}
+                    <div class="course-technology--grid-item">
+                        <img data-src="{{ image.path }}" class="lazyload" alt="Vue">
+                        <p class="course-technology--grid-item--description">{{ image.path }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <p class="uk-text-center course-technology--follow-us">Приєднуйся до нас та отримай доступ до всіх технологій
+            </p>
+            <a class="course-technology--get-all" href="#">{{ 'Всі технології'|_ }}<span> <span class="orange-attention"> +
+                    </span></span> </a>
+        </div>
+    </section>
+    <section id="course-price">
+        <div class="uk-container uk-container-small ">
+            <h2 class="uk-text-left course-technology--title">{{ 'Ціна за курс'|_ }}</h2>
+            <div class="course-price--price-wrapper">
+                <div class="price-wrapper--main-price-wrapper">
+                    <p class="price-wrapper--main-price">
+                        <span class="main-price--price--cost">{{ record.course_price }} </span><span class="main-price--currency">грн</span>
+                    </p>
+                </div>
+                <div class="course-price--course-description">
+
+                    <div class="course-price--course-description-wrapper">
+                        <h3 class="course-price--vacancies">
+                            <div><span class="course-category uk-text-center ">
+                                    {% for type in record.ctypes %}
+                                       <span>{{ type.course_type }}</span>
+                                    {% endfor %}
+                            </span>
+                            </div>{{ record.title }}</h3>
+                        <ul>
+                            <li><span>{{ record.lessons_count }} </span>занять</li>
+                            <li><span>{{ record.hours_count }} </span>годин практики</li>
+                            <li>м.Київ <span>Слобода 24</span>, 3 поверх</li>
+                            <li>+380 97 123 33 44</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="#" class="main-button-action ">{{ 'Реєструйся'|_ }}</a>
+            </div>
+        </div>
+    </section>
+    <section id="students-review">
+        <h2 class="uk-text-center students-review--title title-onlymobile">{{ 'Що про нас кажуть'|_ }}</h2>
+        <h2 class="uk-text-center students-review--title">{{ 'Про нас кажуть'|_ }}</h2>
+        {% partial 'course/comments' %}
+        <div class="students-review--counter">
+            <span class="counter--current-item">1</span>
+            <span class="counter--border-progress"><span class="pulse"></span></span>
+            <span class="counter--all-items"></span>
+        </div>
+        <a class="students-review--get-all" href="#"> Додати відгук <span class="students-review--plus-wrapper"> <span
+                    class="orange-attention"> +
+                </span></span> </a>
+    </section>
+    {% partial 'reg-bottom' %}
+    <div class="desk-menu-courses">
+        <div class="desk-menu-courses--content">
+            <div class="desk-menu-courses--content-fs">
+                <span class="uk-text-center course-category">
+                    {% for type in record.ctypes %}
+                    <span>{{ type.course_type }}</span>
+                    {% endfor %}
+                </span>
+                <h2 class="marquee" data-text="{{ record.title }}"></h2>
+            </div>
+            <ul class="desk-menu-courses--anchors">
+                <li>
+                    <a href="#course-for">{{ 'Для кого курс'|_ }} </a>
+                </li>
+                <li>
+                    <a href="#video-represent">{{ 'Навіщо курс'|_ }} </a>
+                </li>
+                <li>
+                    <a href="#course-program">{{ 'Програма курсів'|_ }} </a>
+                </li>
+                <li>
+                    <a href="#course-technology">{{ 'Технології'|_ }} </a>
+                </li>
+                <li>
+                    <a href="#course-price">{{ 'Ціна'|_ }} </a>
+                </li>
+                <li>
+                    <a href="#students-review">{{ 'Відгуки'|_ }} </a>
+                </li>
+            </ul>
+            <div class="desk-menu-courses--action">
+                <div class="registration-action">
+                    <a href="#">{{ 'Реєструйся'|_ }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
